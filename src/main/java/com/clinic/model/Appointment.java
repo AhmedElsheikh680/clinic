@@ -24,6 +24,7 @@ public class Appointment extends BaseEntity{
 
 //    @JsonFormat(pattern="yyyy-MM-dd")
 //    @Temporal(TemporalType.TIMESTAMP)
+
     @Column(name="date")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime date;
