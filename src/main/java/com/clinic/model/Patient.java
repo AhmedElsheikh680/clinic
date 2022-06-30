@@ -10,6 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Setter
@@ -22,6 +23,12 @@ public class Patient extends BaseEntity{
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "age")
+    private int age;
+
+    @Column(name = "gender")
+    private String gender;
 
     @Column(name = "address")
     private String address;

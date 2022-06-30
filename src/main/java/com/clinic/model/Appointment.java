@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Setter
@@ -20,12 +21,15 @@ import java.util.Date;
 @Table(name = "appointment")
 public class Appointment extends BaseEntity{
 
-    @Column(name="my_date")
-    @JsonFormat(pattern="yyyy-MM-dd")
-    private Date myDate;
+
+//    @JsonFormat(pattern="yyyy-MM-dd")
+//    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="date")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime date;
 
     @Column(name = "cancle")
-    private boolean cancle;
+    private Boolean cancle;
 
     @Column(name = "reason")
     private String reason;
