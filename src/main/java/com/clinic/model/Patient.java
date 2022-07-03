@@ -1,10 +1,7 @@
 package com.clinic.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -18,8 +15,12 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@ToString
 @Table(name = "patient")
-public class Patient extends BaseEntity{
+public class Patient{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @Column(name = "name")
     private String name;
@@ -36,9 +37,8 @@ public class Patient extends BaseEntity{
     @Column(name = "disease")
     private String disease;
 
-    @OneToMany(mappedBy = "patient")
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
     @JsonIgnore
-    private Set<Appointment> appointments;
-
+    private Set<Appointment> appointments=new HashSet<>();
 
 }

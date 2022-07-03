@@ -6,12 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
+
 
 @Setter
 @Getter
@@ -19,25 +17,41 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Table(name = "appointment")
-public class Appointment extends BaseEntity{
+public class Appointment{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
 
 //    @JsonFormat(pattern="yyyy-MM-dd")
 //    @Temporal(TemporalType.TIMESTAMP)
 
     @Column(name="date")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime date;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate date;
+
+    @Column(name="hour")
+    private int hour;
 
     @Column(name = "cancle")
-    private Boolean cancle;
+    private Boolean cancle=false;
 
     @Column(name = "reason")
     private String reason;
 
     @ManyToOne
     @JoinColumn(name = "patient_id")
-    @JsonIgnore
+//    @JsonIgnore
     private Patient patient;
 
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "id=" + id +
+                ", date=" + date +
+                ", hour=" + hour +
+                ", cancle=" + cancle +
+                ", reason='" + reason + '\'' +
+                '}';
+    }
 }
